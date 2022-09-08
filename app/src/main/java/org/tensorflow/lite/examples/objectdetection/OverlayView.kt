@@ -20,25 +20,18 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.Rect
-import android.graphics.RectF
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
-import java.util.LinkedList
-import kotlin.math.max
-import org.tensorflow.lite.task.vision.detector.Detection
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 
 class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
 
-    private var results: List<Detection> = LinkedList<Detection>()
+    private var result: DetectionLabels? = null
     private var boxPaint = Paint()
     private var textBackgroundPaint = Paint()
     private var textPaint = Paint()
-
-    private var scaleFactor: Float = 1f
-
-    private var bounds = Rect()
 
     init {
         initPaints()
@@ -66,56 +59,32 @@ class OverlayView(context: Context?, attrs: AttributeSet?) : View(context, attrs
         boxPaint.style = Paint.Style.STROKE
     }
 
+    enum class DetectionLabels {
+        YAWN,
+        NO_YAWN,
+        CLOSED,
+        OPEN
+    }
+
     override fun draw(canvas: Canvas) {
         super.draw(canvas)
+        val text = if (result == null) " " else result.toString()
+        canvas.drawText(text, 100F, 100F, textPaint)
+    }
 
-        for (result in results) {
-            val boundingBox = result.boundingBox
+    fun setResults(outputTensorBuffer: TensorBuffer) {
+        val data = outputTensorBuffer.floatArray
+        data.forEach {
+            Log.d("TAG", "setResults: $it")
+        }
+        val maxValueIndex = data.withIndex().maxByOrNull { it.value }?.index
+        Log.d("TAG", "$maxValueIndex")
+        Log.d("TAG", "------------------")
 
-            val top = boundingBox.top * scaleFactor
-            val bottom = boundingBox.bottom * scaleFactor
-            val left = boundingBox.left * scaleFactor
-            val right = boundingBox.right * scaleFactor
-
-            // Draw bounding box around detected objects
-            val drawableRect = RectF(left, top, right, bottom)
-            canvas.drawRect(drawableRect, boxPaint)
-
-            // Create text to display alongside detected objects
-            val drawableText =
-                result.categories[0].label + " " +
-                        String.format("%.2f", result.categories[0].score)
-
-            // Draw rect behind display text
-            textBackgroundPaint.getTextBounds(drawableText, 0, drawableText.length, bounds)
-            val textWidth = bounds.width()
-            val textHeight = bounds.height()
-            canvas.drawRect(
-                left,
-                top,
-                left + textWidth + Companion.BOUNDING_RECT_TEXT_PADDING,
-                top + textHeight + Companion.BOUNDING_RECT_TEXT_PADDING,
-                textBackgroundPaint
-            )
-
-            // Draw text for detected object
-            canvas.drawText(drawableText, left, top + bounds.height(), textPaint)
+        maxValueIndex?.let {
+            result = DetectionLabels.values()[it]
         }
     }
-
-    fun setResults(
-      detectionResults: MutableList<Detection>,
-      imageHeight: Int,
-      imageWidth: Int,
-    ) {
-        results = detectionResults
-
-        // PreviewView is in FILL_START mode. So we need to scale up the bounding box to match with
-        // the size that the captured images will be displayed.
-        scaleFactor = max(width * 1f / imageWidth, height * 1f / imageHeight)
-    }
-
-    companion object {
-        private const val BOUNDING_RECT_TEXT_PADDING = 8
-    }
 }
+
+

@@ -98,21 +98,20 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/ecb5b12761bbb346c54999a2d02749e4/transformed/jetified-kotlinx-coroutines-android-1.5.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/4fa820b867260f3e8a4b393c8b62134d/transformed/jetified-kotlinx-coroutines-core-jvm-1.5.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/8c42bab9235eba520a31efac256baf19/transformed/jetified-kotlin-stdlib-jdk8-1.5.21.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/3b19cb505c13177de9e80162ed45d008/transformed/jetified-tensorflow-lite-task-vision-0.4.0-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/0f048497f8b9e408a307040f7b57dc1d/transformed/jetified-tensorflow-lite-support-0.1.0-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/ae3721d88b51477f96c252138a74579e/transformed/jetified-tensorflow-lite-metadata-0.1.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/613c26f0ceaaf4028be038d3dfc0f453/transformed/jetified-tensorflow-lite-gpu-delegate-plugin-0.4.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/4c516158912275bab5b2dafb2cc718f6/transformed/jetified-tensorflow-lite-gpu-2.9.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/6ee2f5f174bd9a8dc25532b9f6ec9611/transformed/jetified-kotlin-stdlib-jdk7-1.5.21.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/6d8ff4c94ea9bdbee6c43f697fbac020/transformed/jetified-kotlin-stdlib-1.6.10.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.constraintlayout/constraintlayout-solver/2.0.4/1f001d7db280a89a6c26b26a66eb064bb6d5efeb/constraintlayout-solver-2.0.4.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/80dfb7db52492458f711cdb4a750de2f/transformed/jetified-checker-qual-2.5.8.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/85ad24e4b701afa2a15dee702061e925/transformed/jetified-tensorflow-lite-2.4.0-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/14f4fec0606431ee7be35bc02ea37323/transformed/jetified-flatbuffers-java-1.12.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/d96d194ae7a4cef791aef0b71679ef4b/transformed/jetified-annotation-experimental-1.1.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/f511c5f23064004b9e76e5ca4889889a/transformed/jetified-listenablefuture-1.0.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/47273e0ecd51608aef685b4069227b51/transformed/jetified-tensorflow-lite-task-base-0.4.0-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/168ec65b4790a33a0000a171631fdeca/transformed/jetified-tensorflow-lite-support-api-0.4.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/37014d0b973412b87c64bd870134db3a/transformed/jetified-annotations-13.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/67deaf74b980962f633ce2338a1157fa/transformed/jetified-kotlin-stdlib-common-1.6.10.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/80dfb7db52492458f711cdb4a750de2f/transformed/jetified-checker-qual-2.5.8.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/1f53b696c94878277d09154508eebee5/transformed/jetified-tensorflow-lite-api-2.8.0-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/1887a180e8b7d81aaae69a621a7f4cf6/transformed/jetified-image-1.0.0-beta1-api.jar</arg>
                 <arg>C:/Android/sdk/platforms/android-32/android.jar</arg>
                 <arg>C:/Android/sdk/build-tools/30.0.3/core-lambda-stubs.jar</arg>
               </args>
@@ -201,13 +200,15 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.5.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.21" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite-metadata:0.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.21" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.6.10" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.constraintlayout:constraintlayout-solver:2.0.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.checkerframework:checker-qual:2.5.8" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.flatbuffers:flatbuffers-java:1.12.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:listenablefuture:1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.checkerframework:checker-qual:2.5.8" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test.ext:junit:1.1.3@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test:core:1.4.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test:rules:1.4.0@aar" level="project" />
@@ -277,14 +278,11 @@
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.navigation:navigation-common:2.3.5@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test.espresso:espresso-idling-resource:3.4.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.window:window:1.0.0-alpha09@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite-task-vision:0.4.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite-support:0.1.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite-gpu-delegate-plugin:0.4.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite-gpu:2.9.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite:2.4.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.annotation:annotation-experimental:1.1.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite-task-base:0.4.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite-support-api:0.4.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite-api:2.8.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.odml:image:1.0.0-beta1@aar" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="android.app.main" />
 </module>

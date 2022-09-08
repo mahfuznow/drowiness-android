@@ -23,26 +23,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.Toast
-import androidx.camera.core.AspectRatio
-import androidx.camera.core.Camera
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageAnalysis
+import androidx.camera.core.*
 import androidx.camera.core.ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888
-import androidx.camera.core.ImageProxy
-import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import java.util.LinkedList
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 import org.tensorflow.lite.examples.objectdetection.ObjectDetectorHelper
 import org.tensorflow.lite.examples.objectdetection.R
 import org.tensorflow.lite.examples.objectdetection.databinding.FragmentCameraBinding
-import org.tensorflow.lite.task.vision.detector.Detection
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 class CameraFragment : Fragment(), ObjectDetectorHelper.DetectorListener {
 
@@ -82,9 +75,9 @@ class CameraFragment : Fragment(), ObjectDetectorHelper.DetectorListener {
     }
 
     override fun onCreateView(
-      inflater: LayoutInflater,
-      container: ViewGroup?,
-      savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         _fragmentCameraBinding = FragmentCameraBinding.inflate(inflater, container, false)
 
@@ -97,7 +90,8 @@ class CameraFragment : Fragment(), ObjectDetectorHelper.DetectorListener {
 
         objectDetectorHelper = ObjectDetectorHelper(
             context = requireContext(),
-            objectDetectorListener = this)
+            objectDetectorListener = this
+        )
 
         // Initialize our background executor
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -107,103 +101,6 @@ class CameraFragment : Fragment(), ObjectDetectorHelper.DetectorListener {
             // Set up the camera and its use cases
             setUpCamera()
         }
-
-        // Attach listeners to UI control widgets
-        initBottomSheetControls()
-    }
-
-    private fun initBottomSheetControls() {
-        // When clicked, lower detection score threshold floor
-        fragmentCameraBinding.bottomSheetLayout.thresholdMinus.setOnClickListener {
-            if (objectDetectorHelper.threshold >= 0.1) {
-                objectDetectorHelper.threshold -= 0.1f
-                updateControlsUi()
-            }
-        }
-
-        // When clicked, raise detection score threshold floor
-        fragmentCameraBinding.bottomSheetLayout.thresholdPlus.setOnClickListener {
-            if (objectDetectorHelper.threshold <= 0.8) {
-                objectDetectorHelper.threshold += 0.1f
-                updateControlsUi()
-            }
-        }
-
-        // When clicked, reduce the number of objects that can be detected at a time
-        fragmentCameraBinding.bottomSheetLayout.maxResultsMinus.setOnClickListener {
-            if (objectDetectorHelper.maxResults > 1) {
-                objectDetectorHelper.maxResults--
-                updateControlsUi()
-            }
-        }
-
-        // When clicked, increase the number of objects that can be detected at a time
-        fragmentCameraBinding.bottomSheetLayout.maxResultsPlus.setOnClickListener {
-            if (objectDetectorHelper.maxResults < 5) {
-                objectDetectorHelper.maxResults++
-                updateControlsUi()
-            }
-        }
-
-        // When clicked, decrease the number of threads used for detection
-        fragmentCameraBinding.bottomSheetLayout.threadsMinus.setOnClickListener {
-            if (objectDetectorHelper.numThreads > 1) {
-                objectDetectorHelper.numThreads--
-                updateControlsUi()
-            }
-        }
-
-        // When clicked, increase the number of threads used for detection
-        fragmentCameraBinding.bottomSheetLayout.threadsPlus.setOnClickListener {
-            if (objectDetectorHelper.numThreads < 4) {
-                objectDetectorHelper.numThreads++
-                updateControlsUi()
-            }
-        }
-
-        // When clicked, change the underlying hardware used for inference. Current options are CPU
-        // GPU, and NNAPI
-        fragmentCameraBinding.bottomSheetLayout.spinnerDelegate.setSelection(0, false)
-        fragmentCameraBinding.bottomSheetLayout.spinnerDelegate.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    objectDetectorHelper.currentDelegate = p2
-                    updateControlsUi()
-                }
-
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                    /* no op */
-                }
-            }
-
-        // When clicked, change the underlying model used for object detection
-        fragmentCameraBinding.bottomSheetLayout.spinnerModel.setSelection(0, false)
-        fragmentCameraBinding.bottomSheetLayout.spinnerModel.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    objectDetectorHelper.currentModel = p2
-                    updateControlsUi()
-                }
-
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                    /* no op */
-                }
-            }
-    }
-
-    // Update the values displayed in the bottom sheet. Reset detector.
-    private fun updateControlsUi() {
-        fragmentCameraBinding.bottomSheetLayout.maxResultsValue.text =
-            objectDetectorHelper.maxResults.toString()
-        fragmentCameraBinding.bottomSheetLayout.thresholdValue.text =
-            String.format("%.2f", objectDetectorHelper.threshold)
-        fragmentCameraBinding.bottomSheetLayout.threadsValue.text =
-            objectDetectorHelper.numThreads.toString()
-
-        // Needs to be cleared instead of reinitialized because the GPU
-        // delegate needs to be initialized on the thread using it when applicable
-        objectDetectorHelper.clearObjectDetector()
-        fragmentCameraBinding.overlay.clear()
     }
 
     // Initialize CameraX, and prepare to bind the camera use cases
@@ -231,7 +128,7 @@ class CameraFragment : Fragment(), ObjectDetectorHelper.DetectorListener {
 
         // CameraSelector - makes assumption that we're only using the back camera
         val cameraSelector =
-            CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_BACK).build()
+            CameraSelector.Builder().requireLensFacing(CameraSelector.LENS_FACING_FRONT).build()
 
         // Preview. Only using the 4:3 ratio because this is the closest to our models
         preview =
@@ -255,9 +152,9 @@ class CameraFragment : Fragment(), ObjectDetectorHelper.DetectorListener {
                             // The image rotation and RGB image buffer are initialized only once
                             // the analyzer has started running
                             bitmapBuffer = Bitmap.createBitmap(
-                              image.width,
-                              image.height,
-                              Bitmap.Config.ARGB_8888
+                                image.width,
+                                image.height,
+                                Bitmap.Config.ARGB_8888
                             )
                         }
 
@@ -296,23 +193,10 @@ class CameraFragment : Fragment(), ObjectDetectorHelper.DetectorListener {
 
     // Update UI after objects have been detected. Extracts original image height/width
     // to scale and place bounding boxes properly through OverlayView
-    override fun onResults(
-      results: MutableList<Detection>?,
-      inferenceTime: Long,
-      imageHeight: Int,
-      imageWidth: Int
-    ) {
+    override fun onResults(outputTensorBuffer: TensorBuffer) {
         activity?.runOnUiThread {
-            fragmentCameraBinding.bottomSheetLayout.inferenceTimeVal.text =
-                            String.format("%d ms", inferenceTime)
-
             // Pass necessary information to OverlayView for drawing on the canvas
-            fragmentCameraBinding.overlay.setResults(
-                results ?: LinkedList<Detection>(),
-                imageHeight,
-                imageWidth
-            )
-
+            fragmentCameraBinding.overlay.setResults(outputTensorBuffer)
             // Force a redraw
             fragmentCameraBinding.overlay.invalidate()
         }
