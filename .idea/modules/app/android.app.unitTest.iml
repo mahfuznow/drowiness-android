@@ -13,6 +13,7 @@
           <stringArguments>
             <stringArg name="classpath">
               <args>
+                <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/2bef51c0a0a68832da86ecbaee05d600/transformed/databinding-runtime-7.1.2-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/99e5ff3c9250a43141039208b50abe36/transformed/jetified-viewbinding-7.1.2-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/2230479def1d4c75f60c600f46309d87/transformed/databinding-adapters-7.1.2-api.jar</arg>
@@ -109,8 +110,8 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/a3a902dd195fc4b5c277ec3f61638305/transformed/jetified-javax.annotation-api-1.3.2.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/d6700e4375108dc30639561175d7e4c6/transformed/jetified-failureaccess-1.0.1.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/d373738e87254b763b68cc7d032b8ee2/transformed/jetified-listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/3b19cb505c13177de9e80162ed45d008/transformed/jetified-tensorflow-lite-task-vision-0.4.0-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/168ec65b4790a33a0000a171631fdeca/transformed/jetified-tensorflow-lite-support-api-0.4.0-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/0f048497f8b9e408a307040f7b57dc1d/transformed/jetified-tensorflow-lite-support-0.1.0-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/ae3721d88b51477f96c252138a74579e/transformed/jetified-tensorflow-lite-metadata-0.1.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/80dfb7db52492458f711cdb4a750de2f/transformed/jetified-checker-qual-2.5.8.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/b4036d72bbec8bdbeb28a1d7a00e2448/transformed/jetified-error_prone_annotations-2.2.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/dd724bc8aa912144ae13bf12587848b7/transformed/jetified-j2objc-annotations-1.1.jar</arg>
@@ -134,9 +135,8 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/67deaf74b980962f633ce2338a1157fa/transformed/jetified-kotlin-stdlib-common-1.6.10.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/d96d194ae7a4cef791aef0b71679ef4b/transformed/jetified-annotation-experimental-1.1.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.constraintlayout/constraintlayout-solver/2.0.4/1f001d7db280a89a6c26b26a66eb064bb6d5efeb/constraintlayout-solver-2.0.4.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/47273e0ecd51608aef685b4069227b51/transformed/jetified-tensorflow-lite-task-base-0.4.0-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/1f53b696c94878277d09154508eebee5/transformed/jetified-tensorflow-lite-api-2.8.0-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/1887a180e8b7d81aaae69a621a7f4cf6/transformed/jetified-image-1.0.0-beta1-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/85ad24e4b701afa2a15dee702061e925/transformed/jetified-tensorflow-lite-2.4.0-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/14f4fec0606431ee7be35bc02ea37323/transformed/jetified-flatbuffers-java-1.12.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/613c26f0ceaaf4028be038d3dfc0f453/transformed/jetified-tensorflow-lite-gpu-delegate-plugin-0.4.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/4c516158912275bab5b2dafb2cc718f6/transformed/jetified-tensorflow-lite-gpu-2.9.0-api.jar</arg>
                 <arg>C:/Android/sdk/platforms/android-32/android.jar</arg>
@@ -231,6 +231,7 @@
     <orderEntry type="library" scope="TEST" name="Gradle: javax.annotation:javax.annotation-api:1.3.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:failureaccess:1.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite-metadata:0.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.checkerframework:checker-qual:2.5.8" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.errorprone:error_prone_annotations:2.2.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.j2objc:j2objc-annotations:1.1" level="project" />
@@ -252,6 +253,7 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.6.10" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.constraintlayout:constraintlayout-solver:2.0.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.flatbuffers:flatbuffers-java:1.12.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.databinding:databinding-runtime:7.1.2@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.databinding:viewbinding:7.1.2@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.databinding:databinding-adapters:7.1.2@aar" level="project" />
@@ -320,13 +322,10 @@
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.navigation:navigation-common-ktx:2.3.5@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.navigation:navigation-common:2.3.5@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test.espresso:espresso-idling-resource:3.4.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite-task-vision:0.4.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite-support-api:0.4.0@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite-support:0.1.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.window:window:1.0.0-alpha09@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.annotation:annotation-experimental:1.1.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite-task-base:0.4.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite-api:2.8.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.odml:image:1.0.0-beta1@aar" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite:2.4.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite-gpu-delegate-plugin:0.4.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.tensorflow:tensorflow-lite-gpu:2.9.0@aar" level="project" />
   </component>
